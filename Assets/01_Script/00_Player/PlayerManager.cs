@@ -3,9 +3,15 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    public static PlayerManager instance;
     public InputHandler actualInput;
 
     public List<PlayerController> playerControllers;
+
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Update()
     {

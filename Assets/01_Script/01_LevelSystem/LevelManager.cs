@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -31,13 +32,12 @@ public class LevelManager : MonoBehaviour
         actuallevel++;
         expToNextLevel += 100;
         onLevelUp?.Invoke();
+        ShowParticlesLevelUp(PlayerManager.instance.actualInput.actualPlayer.transform.position);
     }
-
-    void Update()
+    public void ShowParticlesLevelUp(Vector2 pos)
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            AddExp(10);
-        }
+        GameObject gameObject = Instantiate(particlesLevelUp, pos, Quaternion.identity);
+        Destroy(gameObject, 2);
     }
+   
 }
