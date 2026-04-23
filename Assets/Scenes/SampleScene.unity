@@ -221,6 +221,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6e30f6899cd3c6940abfd9a5e6e1dbec, type: 2}
   levelUpPanel: {fileID: 3766198557821040671, guid: 9232c9572ef488b4c80240b9a738952a, type: 3}
   levelUpPanelContainer: {fileID: 1789889292}
+  weaponHolder: {fileID: 1832402659}
+  currentWeapons: []
 --- !u!4 &73498781
 Transform:
   m_ObjectHideFlags: 0
@@ -1109,7 +1111,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1832402659}
-  - component: {fileID: 1832402660}
   m_Layer: 0
   m_Name: WeaponHolder
   m_TagString: Untagged
@@ -1132,24 +1133,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 895954779}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1832402660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832402658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7af94d14458a83419baefca470e0b60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Katana
-  damage: 0
-  projectileCount: 0
-  sizeScale: 0
-  fireRate: 0.2
-  projectileSpeed: 0
-  katanaProjectile: {fileID: 560192101820470452, guid: 45f1cd0d5ce9a0e4694ce77cd0f4aeef, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class WeaponSO : ScriptableObject
     public string nameWeapon;
     public Sprite iconWeapon;
     public string descriptionItem;
+    public GameObject weaponObject;
     
 
     public List<WeaponAttributtes> atributesPerLevel;

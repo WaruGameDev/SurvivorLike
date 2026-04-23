@@ -18,9 +18,27 @@ public class LevelManager : MonoBehaviour
     public LevelUpPanel levelUpPanel;
     public Transform levelUpPanelContainer;
 
+    public Transform weaponHolder;
+    public List<WeaponBase> currentWeapons;
+
     void Awake()
     {
         instance = this;
+    }
+    public void AddWeapon(WeaponSO weaponToAdd)
+    {
+        GameObject weapon = Instantiate(weaponToAdd.weaponObject,weaponHolder);
+        currentWeapons.Add(weapon.GetComponent<WeaponBase>());
+        weapon.GetComponent<WeaponBase>().LevelUpWeapon();
+    }
+    public void LevelUpWeapon(WeaponSO weaponSO)
+    {
+        if(!currentWeapons.Contains(weaponSO.weaponObject.GetComponent<WeaponBase>()))
+        {
+            AddWeapon(weaponSO); 
+                       
+        }
+        CleanPanels();
     }
 
     public void AddExp(float exp)
@@ -39,16 +57,20 @@ public class LevelManager : MonoBehaviour
         expToNextLevel += 100;
         onLevelUp?.Invoke();
         ShowParticlesLevelUp(PlayerManager.instance.actualInput.actualPlayer.transform.position);
-
-        foreach(Transform child in levelUpPanelContainer)
-        {
-            Destroy(child.gameObject);
-        }
+        CleanPanels();
+        
 
         foreach(var item in weaponSOs)
         {
             LevelUpPanel lvlUpPanel = Instantiate(levelUpPanel, levelUpPanelContainer);
             lvlUpPanel.SetUpInfo(item);
+        }
+    }
+    public void CleanPanels()
+    {
+        foreach(Transform child in levelUpPanelContainer)
+        {
+            Destroy(child.gameObject);
         }
     }
     public void ShowParticlesLevelUp(Vector2 pos)
