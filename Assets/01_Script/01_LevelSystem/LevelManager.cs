@@ -19,7 +19,8 @@ public class LevelManager : MonoBehaviour
     public Transform levelUpPanelContainer;
 
     public Transform weaponHolder;
-    public List<WeaponBase> currentWeapons;
+    //public List<WeaponSO> currentWeapons;
+    public List<WeaponBase> currentWeaponClass;
 
     void Awake()
     {
@@ -28,16 +29,39 @@ public class LevelManager : MonoBehaviour
     public void AddWeapon(WeaponSO weaponToAdd)
     {
         GameObject weapon = Instantiate(weaponToAdd.weaponObject,weaponHolder);
-        currentWeapons.Add(weapon.GetComponent<WeaponBase>());
+        //currentWeapons.Add(weaponToAdd);
         weapon.GetComponent<WeaponBase>().LevelUpWeapon();
+        currentWeaponClass.Add(weapon.GetComponent<WeaponBase>());
+    }
+    public WeaponBase GetWeapon(string weaponToLook)
+    {
+        foreach(WeaponBase w in currentWeaponClass)
+        {
+            if(w.currentWeapon.nameWeapon == weaponToLook)
+            {
+                return w;
+            }
+        }
+        return null;
     }
     public void LevelUpWeapon(WeaponSO weaponSO)
     {
-        if(!currentWeapons.Contains(weaponSO.weaponObject.GetComponent<WeaponBase>()))
+        if(GetWeapon(weaponSO.nameWeapon)== null)
         {
-            AddWeapon(weaponSO); 
-                       
-        }
+           AddWeapon(weaponSO);    
+        }      
+        else if (GetWeapon(weaponSO.nameWeapon)!= null)
+        {
+            foreach(WeaponBase w in currentWeaponClass)
+            {
+                if(w.currentWeapon.nameWeapon == weaponSO.nameWeapon)
+                {
+                    w.LevelUpWeapon();
+                }
+            }
+        }                   
+        
+      
         CleanPanels();
     }
 
