@@ -11,5 +11,6 @@ public class Katana : WeaponBase
 
         KatanaProjectile projectile = Instantiate(katanaProjectile, transform.position,Quaternion.Euler(direction) );
         projectile.direction = direction;
+        projectile.transform.localScale = new Vector3(currentWeaponAttributtes.sizeScale, currentWeaponAttributtes.sizeScale,currentWeaponAttributtes.sizeScale);
     }
 }
